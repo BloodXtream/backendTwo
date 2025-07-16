@@ -13,7 +13,7 @@
 
 const express = require('express');
 
-const app = express();
+const app = express();   // express ko call karte hi server create ho jata hai
 
 app.get('/', (req, res) => {
     res.send('Welcome to  page');
@@ -22,6 +22,6 @@ app.get('/home', (req, res) => {
     res.send('Welcome to home page');
 })
 
-app.listen(3000, () => {
+app.listen(3000, () => {            // and here we start the actual server with the help of app.listen()
     console.log("Server is running on port 3000");
 })
