@@ -7,7 +7,7 @@ const connectToDb = require("./src/db/db");
 require('dotenv').config();
 
 
-connectToDb()
+// connectToDb()
 const app = express();
 app.use(express.json());
 
