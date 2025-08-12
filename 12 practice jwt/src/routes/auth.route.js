@@ -82,6 +82,47 @@ routes.get('/register', async (req, res) => {
 
 routes.post('/login', async (req, res) => {
     const { username, password } = req.body
+
+    // first we'll be checking the username exist or not
+    const user = await userModel.findOne({
+        username
+    }).select("-password -__v")
+
+    if (!user) {
+        return res.status(404).json({
+            message: "Username does not exist"
+        })
+    }
+
+    const isPasswordValid = user.password === password
+
+    if (!isPasswordValid) {
+        return res.status(401).json({
+            message: "Unauthorized: Invalid Password"
+        })
+    }
+
+    const token = jwt.sign(
+        { id: user._id },
+        process.env.JWT_SECRET
+    )
+
+    res.cookie("token", token)
+
+    res.status(200).json({
+        message: "User Login successfully",
+        user
+    })
 })
+
+routes.get('/logout', async (req, res) => {
+    res.clearCookie("token")
+
+    res.status(200).json({
+        message: "User logged out successfully"
+    })
+})
+
+
 module.exports = routes
 
