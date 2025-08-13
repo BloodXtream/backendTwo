@@ -1,6 +1,7 @@
 const express = require('express')
 const multer = require('multer')
 const authMiddleware = require('../middlewares/auth.middleware')
+const { createPostController } = require('../controllers/post.controller')
 const router = express.Router()
 
 const upload = multer({
@@ -9,9 +10,10 @@ const upload = multer({
 
 // POST /api/posts [protected] {image_file}
 
-router.post('/',
-    authMiddleware,
+router.post(
+    '/',
+    authMiddleware,             // req.data=userData
     upload.single('image'),
-    createPostController)        // req.data=userData 
-
+    createPostController
+)
 module.exports = router
