@@ -1,0 +1,227 @@
+:root {
+  /* Dim theme (middle-ground): soft page background + muted dark panel */
+  /* changed to a warm, soft gradient */
+  --bg: #6c636e;
+  /* warm cream */
+  --bg-2: #3c36338a;
+  /* slightly darker warm tone */
+  --panel: rgba(12, 18, 30, 0.96);
+  /* muted dark panel */
+  --panel-2: rgba(16, 24, 36, 0.9);
+  --muted: #9fb0c8;
+  /* subtle secondary text */
+  --accent: #7c5cff;
+  /* violet accent for user messages */
+  --user-text: #ffffff;
+  /* text color on accent bubble */
+  --bot-bg: rgba(255, 255, 255, 0.03);
+  /* slightly translucent bot bubble */
+  --glass: rgba(255, 255, 255, 0.02);
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), var(--bg-2) 120%);
+  color: #0f1724;
+}
+
+.chat-app {
+  max-width: 1100px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.chat-panel {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.12);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.chat-header {
+  padding: 18px 22px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: transparent;
+  color: #0f1724;
+  /* header on page (above panel) remains dark */
+}
+
+.chat-main {
+  flex: 1 1 auto;
+  display: flex;
+  padding: 20px;
+  align-items: stretch;
+  background: transparent;
+}
+
+.messages {
+  width: 100%;
+  overflow: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  display: flex
+}
+
+.message.user {
+  justify-content: flex-end
+}
+
+.message.bot {
+  justify-content: flex-start
+}
+
+.bubble {
+  max-width: 78%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  line-height: 1.35;
+}
+
+.message.user .bubble {
+  background: linear-gradient(180deg, var(--accent), #5b46d6);
+  color: var(--user-text);
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 6px 18px rgba(92, 73, 214, 0.12);
+}
+
+.message.bot .bubble {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  color: var(--muted);
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.chat-input {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+}
+
+.chat-input textarea {
+  resize: none;
+  border: 0;
+  outline: none;
+  background: rgba(255, 255, 255, 0.02);
+  color: #e6eef6;
+  padding: 12px 14px;
+  border-radius: 10px;
+  flex: 1 1 auto;
+  min-height: 44px;
+  max-height: 160px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  font-size: 15px;
+  overflow: auto;
+  /* allow scroll but hide the visual scrollbar */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.chat-input textarea::-webkit-scrollbar {
+  display: none
+    /* Safari and Chrome */
+}
+
+.send-btn {
+  background: linear-gradient(180deg, var(--accent), #5b46d6);
+  border: none;
+  color: var(--user-text);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 26px rgba(92, 73, 214, 0.16)
+}
+
+/* Responsive layout rules */
+@media (max-width:480px) {
+  .chat-app {
+    height: 100vh;
+    padding-bottom: env(safe-area-inset-bottom)
+  }
+
+  .chat-header {
+    padding: 12px 14px;
+    font-size: 15px
+  }
+
+  .chat-main {
+    padding: 12px
+  }
+
+  .bubble {
+    max-width: 86%
+  }
+
+  .chat-input {
+    padding: 10px
+  }
+
+  .chat-input textarea {
+    min-height: 40px;
+    font-size: 14px
+  }
+}
+
+@media (min-width:481px) and (max-width:1024px) {
+  .chat-app {
+    max-width: 900px
+  }
+
+  .chat-header {
+    font-size: 16px
+  }
+}
+
+@media (min-width:1025px) {
+  .chat-app {
+    padding-left: 8px;
+    padding-right: 8px
+  }
+}
+
+/* small helpers */
+.messages {
+  /* hide scrollbar but keep scrolling functionality */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
