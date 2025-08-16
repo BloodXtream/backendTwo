@@ -2,12 +2,17 @@ require('dotenv').config()
 const app = require('./src/app')
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const generateResponse = require('./src/services/ai.service')
+const generateResponse = require('./src/services/ai.service');
+const { FunctionResponse } = require('@google/genai');
 
 require('dotenv').config()
 
 const httpServer = createServer(app)
 const io = new Server(httpServer, { /* options */ });
+
+const chatHistory = [
+
+]
 
 io.on("connection", (socket) => {
     console.log('A User Connected')
@@ -16,13 +21,23 @@ io.on("connection", (socket) => {
         console.log("A User Disconnected")
     })
 
-    socket.on("ai-message", async (data) => {
-        console.log('Received AI message', data.prompt);
-        const response = await generateResponse(data.prompt);
-        console.log('AI Response:', response);
+    socket.on('ai-message', async (data) => {
+        console.log("Prompt: ", data)
 
-        socket.emit('ai-message-response', { response });       // Sender
-    });
+        chatHistory.push({
+            role: "user",
+            parts: [{ text: data }]
+        })
+
+        const response = await generateResponse(chatHistory)
+
+        chatHistory.push({
+            role: "model",
+            parts: [{ text: response }]
+        })
+
+        socket.emit('ai-message-response', response)
+    })
 
 });
 
