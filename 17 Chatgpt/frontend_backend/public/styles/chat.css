@@ -1,0 +1,248 @@
+@import url('./theme.css');
+
+/* Mobile-first chat UI inspired by the image */
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg, var(--bg), rgba(8, 12, 20, 0.6))
+}
+
+.app {
+    display: flex;
+    min-height: 100vh
+}
+
+/* Sidebar */
+.sidebar {
+    width: 64px;
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    gap: 12px
+}
+
+.close-btn {
+    display: none
+}
+
+.brand {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 12px
+}
+
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none
+}
+
+.chat-list li {
+    color: var(--text);
+    padding: 8px 6px;
+    border-radius: 8px
+}
+
+.chat-list li:hover {
+    background: rgba(255, 255, 255, 0.02);
+    cursor: pointer
+}
+
+.profile {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    padding: 8px;
+    border-radius: 10px
+}
+
+/* Chat panel */
+.chat-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    color: var(--text)
+}
+
+.messages {
+    flex: 1;
+    overflow: auto;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--muted)
+}
+
+.message.user {
+    align-self: flex-end;
+    background: linear-gradient(180deg, var(--accent), #5b46d6);
+    color: var(--text)
+}
+
+.composer {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    align-items: center
+}
+
+.composer-input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    outline: none
+}
+
+.send-btn {
+    background: var(--accent);
+    border: 0;
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 10px
+}
+
+/* Desktop layout */
+@media(min-width:900px) {
+    .sidebar {
+        width: 260px;
+        align-items: flex-start;
+        padding: 18px
+    }
+
+    .chat-list {
+        display: block;
+        margin-top: 18px
+    }
+}
+
+/* Mobile: hide sidebar by default, show via .open class */
+@media(max-width:899px) {
+
+    /* partial-width sidebar so chat remains visible behind it */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 85%;
+        max-width: 360px;
+        background: var(--surface);
+        transform: translateX(-110%);
+        transition: transform 220ms var(--transition);
+        z-index: 60;
+        display: flex
+    }
+
+    .close-btn {
+        display: block;
+        position: absolute;
+        right: 14px;
+        top: 12px;
+        background: transparent;
+        border: 0;
+        color: var(--text);
+        font-size: 18px;
+        padding: 6px
+    }
+
+    .sidebar.open {
+        transform: translateX(0)
+    }
+
+    /* dim backdrop when sidebar open implemented via pseudo-element */
+    .sidebar::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.55);
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms ease
+    }
+
+    .sidebar.open::before {
+        opacity: 1;
+        pointer-events: auto
+    }
+
+    /* chat-panel responsive tweaks for mobile */
+    .chat-panel {
+        padding: 0
+    }
+
+    /* stack header items vertically on mobile */
+    .chat-header {
+        padding: 10px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px
+    }
+
+    .chat-header .title {
+        font-size: 16px
+    }
+
+    .chat-header .header-right {
+        display: block;
+        font-size: 13px;
+        color: var(--muted)
+    }
+
+    .messages {
+        padding: 12px;
+        gap: 12px
+    }
+
+    .message {
+        font-size: 15px;
+        padding: 10px 12px;
+        border-radius: 12px
+    }
+
+    .message.user {
+        max-width: 90%
+    }
+
+    .composer {
+        padding: 10px;
+        gap: 8px
+    }
+
+    .composer-input {
+        padding: 10px 12px;
+        font-size: 15px
+    }
+
+    .send-btn {
+        padding: 8px 12px;
+        font-size: 14px
+    }
+}

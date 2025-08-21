@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/auth-form.css">
+</head>
+
+<body>
+    <main class="form-shell" role="main">
+        <h1 class="form-title">Welcome back</h1>
+        <p class="form-desc">Sign in to continue to your account.</p>
+
+        <form action="/auth/login" method="post" novalidate>
+            <div class="form-row">
+                <label for="identifier">Email or username</label>
+                <input id="identifier" name="identifier" type="text" placeholder="Email or username" required
+                    autocomplete="username" />
+            </div>
+
+            <div class="form-row">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" required autocomplete="current-password" />
+            </div>
+
+            <button class="btn" type="submit">Sign in</button>
+        </form>
+
+        <p class="muted">Don't have an account? <a href="/register">Create one</a></p>
+    </main>
+
+</body>
+
+</html>

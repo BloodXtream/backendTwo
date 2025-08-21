@@ -1,7 +1,7 @@
-@import url('./vars.css');
+@import url('./theme.css');
 
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 html,
@@ -9,7 +9,7 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial
+    font-family: Inter, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 body {
@@ -17,42 +17,42 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px
+    padding: 24px;
 }
 
 .form-shell {
     width: var(--form-width);
     max-width: 100%;
-    background: var(--bg);
+    background: var(--surface);
     border-radius: var(--radius);
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
     padding: 20px;
-    border: none
+    border: none;
 }
 
 .form-title {
     font-size: 18px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 8px
+    margin-bottom: 8px;
 }
 
 .form-desc {
     font-size: 13px;
     color: var(--muted);
-    margin-bottom: 18px
+    margin-bottom: 18px;
 }
 
 .form-row {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-bottom: var(--gap)
+    margin-bottom: var(--gap);
 }
 
 .form-row label {
     font-size: 13px;
-    color: var(--muted)
+    color: var(--muted);
 }
 
 .form-row input {
@@ -62,12 +62,12 @@ body {
     background: transparent;
     color: var(--text);
     outline: none;
-    transition: box-shadow var(--transition), border-color var(--transition)
+    transition: box-shadow var(--transition), border-color var(--transition);
 }
 
 .form-row input:focus {
     box-shadow: 0 8px 20px rgba(124, 92, 255, 0.12);
-    border-color: var(--accent)
+    border-color: var(--accent);
 }
 
 .btn {
@@ -81,23 +81,23 @@ body {
     border: 0;
     cursor: pointer;
     font-weight: 600;
-    width: 100%
+    width: 100%;
 }
 
 .muted {
     font-size: 13px;
     color: var(--muted);
     text-align: center;
-    margin-top: 12px
+    margin-top: 12px;
 }
 
 .error {
     color: var(--danger);
-    font-size: 13px
+    font-size: 13px;
 }
 
-@media(min-width:720px) {
+@media (min-width: 720px) {
     .form-shell {
-        padding: 28px
+        padding: 28px;
     }
 }

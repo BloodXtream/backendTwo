@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="/styles/chat.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar" aria-label="Sidebar">
+            <button class="close-btn" aria-label="Close menu">✕</button>
+            <div class="brand">ChatGPT</div>
+            <nav class="nav">
+                <button class="new-chat">+ New chat</button>
+                <ul class="chat-list">
+                    <li>HTML login form</li>
+                    <li>DIET PLAN</li>
+                    <li>Blog API features</li>
+                </ul>
+            </nav>
+            <div class="profile">PT</div>
+        </aside>
+
+        <main class="chat-panel" role="main">
+            <header class="chat-header">
+                <div class="header-left">
+                    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+                    <h2 class="title">ChatGPT</h2>
+                </div>
+                <div class="header-right">To exit full screen, press <kbd>Esc</kbd></div>
+            </header>
+
+            <section class="messages" id="messages" aria-live="polite">
+                <!-- messages will be appended here -->
+            </section>
+
+            <form id="composer" class="composer" autocomplete="off">
+                <button type="button" class="composer-plus" aria-hidden>+</button>
+                <input id="composer-input" class="composer-input" name="text" type="text" placeholder="Ask anything"
+                    aria-label="Message input" />
+                <button type="submit" class="send-btn" aria-label="Send">Send</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="/scripts/chat.js" defer></script>
+</body>
+
+</html>
