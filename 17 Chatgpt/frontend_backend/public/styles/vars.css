@@ -1,0 +1,28 @@
+/* Centralized theme variables (mobile-first) */
+:root {
+    /* Dark-first theme */
+    --bg: #0b1220;
+    /* page background */
+    --surface: #0f1624;
+    /* form surface */
+    --muted: #9aa9bf;
+    /* secondary text */
+    --text: #e6eef6;
+    /* main text */
+    --accent: #7c5cff;
+    /* accent */
+    --danger: #ff6b6b;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --gap: 14px;
+    --form-width: 100%;
+    --shadow-sm: 0 10px 30px rgba(2, 6, 23, 0.6);
+    --glass: rgba(255, 255, 255, 0.03);
+    --transition: 180ms ease;
+}
+
+@media (min-width: 720px) {
+    :root {
+        --form-width: 420px
+    }
+}
