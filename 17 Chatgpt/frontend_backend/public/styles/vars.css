@@ -18,6 +18,8 @@
     --form-width: 100%;
     --shadow-sm: 0 10px 30px rgba(2, 6, 23, 0.6);
     --glass: rgba(255, 255, 255, 0.03);
+    /* width / height ratio for form surface (keeps login/register same shape) */
+    --form-aspect: 3/4;
     --transition: 180ms ease;
 }
 
